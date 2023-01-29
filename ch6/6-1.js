@@ -2,14 +2,8 @@ export function printOwing(invoice) {
   
   printBanner();
 
+  let outstanding = calculateOutstanding(invoice);
 
-
-  //총 가격 계산
-  // calculate outstanding
-  let outstanding = 0;
-  for (const o of invoice.orders) {
-    outstanding += o.amount;
-  }
 
   //지급 날짜 계산
   // record due date
@@ -31,7 +25,13 @@ function printBanner(){
   console.log('**** Customer Owes ****');
   console.log('***********************');
 }
-
+function calculateOutstanding(invoice){
+  let outstanding = 0;
+  for (const o of invoice.orders) {
+    outstanding += o.amount;
+  }
+  return outstanding
+}
 const invoice = {
   orders: [{ amount: 2 }, { amount: 5 }],
   customer: '엘리',
