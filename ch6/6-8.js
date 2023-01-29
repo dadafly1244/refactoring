@@ -2,7 +2,7 @@ export function readingsOutsideRange(station, range) {
   return station.readings.filter(
     (r) => r.temp < range.min || r.temp > range.max);
 }
-export class NumberRagne {
+export class NumberRange {
   #min;
   #max;
   constructor(min, max) {
@@ -27,7 +27,7 @@ const station = {
     { temp: 51, time: '2016-11-10 09:50' },
   ],
 };
-const operationPlan = new NumberRagne(51, 53)
+const operationPlan = new NumberRange(51, 53)
 
 readingsOutsideRange(
   station,
