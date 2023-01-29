@@ -1,6 +1,5 @@
 export function readingsOutsideRange(station, range) {
-  return station.readings.filter(
-    (r) => r.temp < range.min || r.temp > range.max);
+  return station.readings.filter((r) => !range.contains(r.temp))
 }
 export class NumberRange {
   #min;
@@ -15,6 +14,11 @@ export class NumberRange {
   get max() {
     return this.#max;
   }
+
+  contains(number) {
+    return number >= this.#min && number <= this.#max
+  }
+
 }
 
 const station = {
